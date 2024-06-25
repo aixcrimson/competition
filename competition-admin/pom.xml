@@ -61,23 +61,12 @@
             <artifactId>competition-generator</artifactId>
         </dependency>
 
-        <!-- 用户管理-->
+        <!--管理端-->
         <dependency>
             <groupId>com.competition</groupId>
-            <artifactId>competition-users</artifactId>
+            <artifactId>competition-education</artifactId>
         </dependency>
 
-        <!-- 作品管理-->
-        <dependency>
-            <groupId>com.competition</groupId>
-            <artifactId>competition-works</artifactId>
-        </dependency>
-
-        <!-- 评价管理-->
-        <dependency>
-            <groupId>com.competition</groupId>
-            <artifactId>competition-evaluation</artifactId>
-        </dependency>
 
     </dependencies>
 

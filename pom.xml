@@ -172,26 +172,13 @@
                 <version>${competition.version}</version>
             </dependency>
 
-            <!-- 用户管理-->
+            <!--管理端-->
             <dependency>
                 <groupId>com.competition</groupId>
-                <artifactId>competition-users</artifactId>
+                <artifactId>competition-education</artifactId>
                 <version>${competition.version}</version>
             </dependency>
 
-            <!-- 作品管理-->
-            <dependency>
-                <groupId>com.competition</groupId>
-                <artifactId>competition-works</artifactId>
-                <version>${competition.version}</version>
-            </dependency>
-
-            <!-- 评价管理-->
-            <dependency>
-                <groupId>com.competition</groupId>
-                <artifactId>competition-evaluation</artifactId>
-                <version>${competition.version}</version>
-            </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -203,9 +190,7 @@
         <module>competition-quartz</module>
         <module>competition-generator</module>
         <module>competition-common</module>
-        <module>competition-works</module>
-        <module>competition-evaluation</module>
-        <module>competition-users</module>
+        <module>competition-education</module>
     </modules>
     <packaging>pom</packaging>
 
