@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.competition.education.mapper.EvaluationsMapper">
+    
+    <resultMap type="Evaluations" id="EvaluationsResult">
+        <result property="id"    column="id"    />
+        <result property="workId"    column="work_id"    />
+        <result property="evaluatorId"    column="evaluator_id"    />
+        <result property="teachingImplementation"    column="teaching_implementation"    />
+        <result property="lessonPlan"    column="lesson_plan"    />
+        <result property="videoMaterial"    column="video_material"    />
+        <result property="talentTrainingPlan"    column="talent_training_plan"    />
+        <result property="courseStandard"    column="course_standard"    />
+        <result property="teachingMaterial"    column="teaching_material"    />
+        <result property="score"    column="score"    />
+        <result property="evaluationTime"    column="evaluation_time"    />
+        <result property="school"    column="school"    />
+    </resultMap>
+
+    <sql id="selectEvaluationsVo">
+        select id, work_id, evaluator_id, teaching_implementation, lesson_plan, video_material, talent_training_plan, course_standard, teaching_material, score, evaluation_time, school from tb_evaluations
+    </sql>
+
+    <select id="selectEvaluationsList" parameterType="Evaluations" resultMap="EvaluationsResult">
+        <include refid="selectEvaluationsVo"/>
+        <where>  
+            <if test="workId != null "> and work_id like concat('%', #{workId}, '%')</if>
+            <if test="evaluatorId != null "> and evaluator_id like concat('%', #{evaluatorId}, '%')</if>
+            <if test="teachingImplementation != null "> and teaching_implementation = #{teachingImplementation}</if>
+            <if test="lessonPlan != null "> and lesson_plan = #{lessonPlan}</if>
+            <if test="videoMaterial != null "> and video_material = #{videoMaterial}</if>
+            <if test="talentTrainingPlan != null "> and talent_training_plan = #{talentTrainingPlan}</if>
+            <if test="courseStandard != null "> and course_standard = #{courseStandard}</if>
+            <if test="teachingMaterial != null "> and teaching_material = #{teachingMaterial}</if>
+            <if test="score != null "> and score = #{score}</if>
+            <if test="evaluationTime != null "> and evaluation_time = #{evaluationTime}</if>
+            <if test="school != null  and school != ''"> and school like concat('%', #{school}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectEvaluationsById" parameterType="Long" resultMap="EvaluationsResult">
+        <include refid="selectEvaluationsVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertEvaluations" parameterType="Evaluations" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_evaluations
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="workId != null">work_id,</if>
+            <if test="evaluatorId != null">evaluator_id,</if>
+            <if test="teachingImplementation != null">teaching_implementation,</if>
+            <if test="lessonPlan != null">lesson_plan,</if>
+            <if test="videoMaterial != null">video_material,</if>
+            <if test="talentTrainingPlan != null">talent_training_plan,</if>
+            <if test="courseStandard != null">course_standard,</if>
+            <if test="teachingMaterial != null">teaching_material,</if>
+            <if test="score != null">score,</if>
+            <if test="evaluationTime != null">evaluation_time,</if>
+            <if test="school != null and school != ''">school,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="workId != null">#{workId},</if>
+            <if test="evaluatorId != null">#{evaluatorId},</if>
+            <if test="teachingImplementation != null">#{teachingImplementation},</if>
+            <if test="lessonPlan != null">#{lessonPlan},</if>
+            <if test="videoMaterial != null">#{videoMaterial},</if>
+            <if test="talentTrainingPlan != null">#{talentTrainingPlan},</if>
+            <if test="courseStandard != null">#{courseStandard},</if>
+            <if test="teachingMaterial != null">#{teachingMaterial},</if>
+            <if test="score != null">#{score},</if>
+            <if test="evaluationTime != null">#{evaluationTime},</if>
+            <if test="school != null and school != ''">#{school},</if>
+         </trim>
+    </insert>
+
+    <update id="updateEvaluations" parameterType="Evaluations">
+        update tb_evaluations
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="workId != null">work_id = #{workId},</if>
+            <if test="evaluatorId != null">evaluator_id = #{evaluatorId},</if>
+            <if test="teachingImplementation != null">teaching_implementation = #{teachingImplementation},</if>
+            <if test="lessonPlan != null">lesson_plan = #{lessonPlan},</if>
+            <if test="videoMaterial != null">video_material = #{videoMaterial},</if>
+            <if test="talentTrainingPlan != null">talent_training_plan = #{talentTrainingPlan},</if>
+            <if test="courseStandard != null">course_standard = #{courseStandard},</if>
+            <if test="teachingMaterial != null">teaching_material = #{teachingMaterial},</if>
+            <if test="score != null">score = #{score},</if>
+            <if test="evaluationTime != null">evaluation_time = #{evaluationTime},</if>
+            <if test="school != null and school != ''">school = #{school},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteEvaluationsById" parameterType="Long">
+        delete from tb_evaluations where id = #{id}
+    </delete>
+
+    <delete id="deleteEvaluationsByIds" parameterType="String">
+        delete from tb_evaluations where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
