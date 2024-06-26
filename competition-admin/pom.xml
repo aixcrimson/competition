@@ -67,6 +67,12 @@
             <artifactId>competition-education</artifactId>
         </dependency>
 
+        <!--用户端-->
+        <dependency>
+            <groupId>com.competition</groupId>
+            <artifactId>competition-contestant</artifactId>
+        </dependency>
+
 
     </dependencies>
 

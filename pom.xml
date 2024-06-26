@@ -179,6 +179,13 @@
                 <version>${competition.version}</version>
             </dependency>
 
+            <!--用户端-->
+            <dependency>
+                <groupId>com.competition</groupId>
+                <artifactId>competition-contestant</artifactId>
+                <version>${competition.version}</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
@@ -191,6 +198,7 @@
         <module>competition-generator</module>
         <module>competition-common</module>
         <module>competition-education</module>
+        <module>competition-contestant</module>
     </modules>
     <packaging>pom</packaging>
 
